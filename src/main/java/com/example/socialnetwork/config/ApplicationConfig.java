@@ -34,7 +34,10 @@ public class ApplicationConfig {
 // refactoring, this class shuold be removed, single responsability principle
     @Bean
     public WebSecurityCustomizer ignoringCustomizer() {
-        return (web) -> web.ignoring().requestMatchers("/user", "/ignore2");
+        return (web) -> web.ignoring().requestMatchers(
+//                "/user",
+                "/ignore2"
+        );
     }
 
     // create a bean for AuthenticationManager

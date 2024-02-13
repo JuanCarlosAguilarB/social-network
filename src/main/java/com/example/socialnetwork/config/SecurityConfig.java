@@ -30,7 +30,7 @@ public class SecurityConfig {
                                 .disable())
                 .authorizeHttpRequests(authRequest ->
                         authRequest
-                                .requestMatchers("/auth/**").permitAll()
+//                                .requestMatchers("/auth/**").permitAll()
                                 .requestMatchers(HttpMethod.POST,"/user/").permitAll() // only permit POST requests, create user
                                 .anyRequest().authenticated()
                 )
