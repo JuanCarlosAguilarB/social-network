@@ -3,6 +3,7 @@ package com.example.socialnetwork.config;
 import com.example.socialnetwork.entities.User;
 import com.example.socialnetwork.exceptions.UserNotFoundException;
 import com.example.socialnetwork.repositories.UserRepository;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -12,12 +13,15 @@ import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import java.util.Collection;
 import java.util.Collections;
 
 @Configuration
@@ -48,6 +52,7 @@ public class ApplicationConfig {
     }
 
 
+    @ExceptionHandler({ UserNotFoundException.class })
     @Bean
     public UserDetailsService userDetailService() {
         return new UserDetailsService() {
@@ -67,9 +72,17 @@ public class ApplicationConfig {
 //                        user.getEmail(), user.getPassword(), user.getRoles());
 //            }
             return new org.springframework.security.core.userdetails.User(
-                    user.getEmail(), user.getPassword(),
+                    user.getUsername(), user.getPassword(),
                     true, true, true, true, Collections.emptyList());
             }
+
+
+//                return new CustomUserDetails(
+//                        user.getUsername(),
+//                        user.getEmail(),
+//                        user.getPassword()
+////                        Collections.emptyList()
+//                );
 
         };
     }
@@ -84,3 +97,55 @@ public class ApplicationConfig {
     }
 
 }
+
+//@Getter
+//public class CustomUserDetails implements UserDetails {
+//
+//    private String username;
+//    private String email;
+//    private String password;
+//    private Collection<? extends GrantedAuthority> authorities;
+//
+//    public CustomUserDetails(String username, String email, String password) {
+//        this.username = username;
+//        this.email = email;
+//        this.password = password;
+//
+//    }
+//    @Override
+//    public Collection<? extends GrantedAuthority> getAuthorities() {
+//        return null;
+//    }
+//
+//    @Override
+//    public String getPassword() {
+//        return null;
+//    }
+//
+//    @Override
+//    public String getUsername() {
+//        return null;
+//    }
+//
+//    @Override
+//    public boolean isAccountNonExpired() {
+//        return false;
+//    }
+//
+//    @Override
+//    public boolean isAccountNonLocked() {
+//        return false;
+//    }
+//
+//    @Override
+//    public boolean isCredentialsNonExpired() {
+//        return false;
+//    }
+//
+//    @Override
+//    public boolean isEnabled() {
+//        return false;
+//    }
+//
+//    // Constructor, getters y setters
+//}

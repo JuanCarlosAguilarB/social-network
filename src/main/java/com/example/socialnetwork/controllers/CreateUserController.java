@@ -24,7 +24,7 @@ public class CreateUserController {
 
     @Autowired
     private CreateUserServices createUserServices;
-    @PostMapping(value = "/user2")
+    @PostMapping(value = "/user/")
     public ResponseEntity createUser(@RequestBody RequestUserBody requestBody) {
         User user = User.Builder.anUser()
                 .withUsername(requestBody.getUsername())

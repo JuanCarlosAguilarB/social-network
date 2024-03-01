@@ -23,10 +23,10 @@ public class GenerateJwtToken{
     private String secret = "secret";
 
     @Value("${jwt.accessTokenExpirationInDays:10}")
-    private int accessTokenExpirationInDays = 10;
+    private int accessTokenExpirationInDays = 1000;
 
     @Value("${jwt.refreshTokenExpirationInDays:11}")
-    private int refreshTokenExpirationInDays = 11;
+    private int refreshTokenExpirationInDays = 1100;
     private LocalDate now = LocalDate.now();
 
     private String accessToken;

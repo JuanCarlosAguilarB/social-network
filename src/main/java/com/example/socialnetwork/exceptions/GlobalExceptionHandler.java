@@ -75,4 +75,16 @@ public class GlobalExceptionHandler  {
                 .build();
     }
 
+
+    @ExceptionHandler(ResourceNotCreatedException.class)
+    @ResponseStatus(HttpStatus.CONFLICT)
+    @ResponseBody
+    public ApiExceptionResponse handleResourceNotCreatedException(ResourceNotCreatedException ex) {
+        return new ApiExceptionResponse.ApiExceptionResponseBuilder()
+                .status(HttpStatus.CONFLICT.value())
+                .error(HttpStatus.CONFLICT.getReasonPhrase())
+                .message(ex.getMessage())
+                .build();
+    }
+
 }

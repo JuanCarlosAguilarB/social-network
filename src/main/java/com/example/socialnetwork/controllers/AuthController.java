@@ -8,6 +8,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,7 +20,7 @@ public class AuthController {
     private AuthenticationManager authenticationManager;
 
 
-    @PostMapping("/auth/login")
+    @PostMapping("/auth/login/")
     public ResponseEntity<?> authenticateUser(@RequestBody LoginRequest loginRequest) {
 
 
@@ -30,9 +31,11 @@ public class AuthController {
                 )
         );
 
-        SecurityContextHolder.getContext().setAuthentication(authentication);
+        // authentication.getName() returns the email of the user
+
 
         GenerateJwtToken createToken = new GenerateJwtToken(authentication.getName());
+
         return ResponseEntity.ok(new AuthJwtResponse(createToken.getAccessToken(), createToken.getRefreshToken()));
     }
 }
