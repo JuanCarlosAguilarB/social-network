@@ -19,10 +19,12 @@ public class Board {
     private UUID id;
 
     @NonNull
+    @Column(nullable = false, unique = false)
     private String name;
 
     private String description;
 
+    @Column(nullable = false, unique = false)
     private UUID user_id;
 
 
