@@ -3,42 +3,37 @@ package com.example.socialnetwork.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.List;
 import java.util.UUID;
 
 @Entity
-@Getter
-@Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
-public class Board {
+@Getter
+@Setter
+public class Topic {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @NonNull
     private String name;
-
     private String description;
 
-    private UUID user_id;
+    private String color;
 
+    @Column(name = "user_id")
+    private UUID userId;
+
+    @Column(name = "board_id")
+    private UUID boardId;
 
     @ManyToOne
     @JoinColumn(name = "user_id", insertable = false, updatable = false)
     private User user;
 
-    @OneToMany(mappedBy = "board", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<Topic> topics;
-
-    // relations
-//    @OneToMany(mappedBy = "board", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-//    private List<Task> tasks;
-
-
-
-
+    @ManyToOne
+    @JoinColumn(name = "board_id", insertable = false, updatable = false)
+    private Board board;
 
 }

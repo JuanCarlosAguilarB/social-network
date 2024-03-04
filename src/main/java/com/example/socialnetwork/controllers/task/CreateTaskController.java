@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.UUID;
+
 @RestController
 public class CreateTaskController {
 
@@ -32,7 +34,7 @@ public class CreateTaskController {
                 .name(createTaskRequest.getName())
                 .description(createTaskRequest.getDescription())
                 .statusId(createTaskRequest.getStatusId())
-                .boardId(createTaskRequest.getBoardId())
+                .topicId(createTaskRequest.getTopicId())
                 .build();
         createTaskServices.createTask(task);
 
@@ -50,6 +52,6 @@ public class CreateTaskController {
 class CreateTaskRequest {
     private String name;
     private String description;
-    private int boardId;
+    private UUID topicId;
     private int statusId;
 }

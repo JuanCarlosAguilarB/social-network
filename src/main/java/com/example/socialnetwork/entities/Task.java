@@ -22,9 +22,10 @@ public class Task {
     @Column(name = "status_id")
     private Integer statusId;
 
-    @Column(name = "board_id")
-    private Integer boardId;
-
+//    @Column(name = "board_id")
+//    private Integer boardId;
+    @Column(name = "topic_id")
+    private UUID topicId;
 
 
 
@@ -45,9 +46,6 @@ public class Task {
         return statusId;
     }
 
-    public Integer getBoard_id() {
-        return boardId;
-    }
 
     public StatusDTO getStatus() {
         return StatusDTO.builder()
@@ -60,9 +58,9 @@ public class Task {
 //        return board;
 //    }
 
-    @ManyToOne
-    @JoinColumn(name = "board_id", insertable = false, updatable = false)
-    private Board board;
+//    @ManyToOne
+//    @JoinColumn(name = "board_id", insertable = false, updatable = false)
+//    private Board board;
 
     @ManyToOne
     @JoinColumn(name = "status_id", insertable = false, updatable = false)

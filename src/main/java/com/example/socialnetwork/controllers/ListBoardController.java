@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @RestController
@@ -40,7 +41,7 @@ public class ListBoardController {
 @Builder
 @Getter
 class BoardResponse {
-    private Integer id;
+    private UUID id;
     private String name;
     private List<Task> tasks;
 }

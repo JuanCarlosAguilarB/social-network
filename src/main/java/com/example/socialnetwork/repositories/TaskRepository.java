@@ -10,7 +10,7 @@ import java.util.UUID;
 
 public interface TaskRepository  extends JpaRepository<Task, UUID> {
 
-    public List<Task> findByBoardId(int id);
+//    public List<Task> findByBoardId(int id);
 
-    public Page<Task> findByBoardId(int id, Pageable pageable);
+//    public Page<Task> findByBoardId(int id, Pageable pageable);
 }
