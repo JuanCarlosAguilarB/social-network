@@ -24,8 +24,8 @@ public class Board {
 
     private String description;
 
-    @Column(nullable = false, unique = false)
-    private UUID user_id;
+    @Column(nullable = false, unique = false, name="user_id")
+    private UUID userId;
 
 
     @ManyToOne
