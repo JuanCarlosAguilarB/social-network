@@ -20,7 +20,8 @@ public class Topic {
     private String name;
     private String description;
 
-    private String color;
+    @Column(name = "color_id")
+    private Integer colorId;
 
     @Column(name = "user_id")
     private UUID userId;
@@ -35,5 +36,9 @@ public class Topic {
     @ManyToOne
     @JoinColumn(name = "board_id", insertable = false, updatable = false)
     private Board board;
+
+    @ManyToOne
+    @JoinColumn(name = "color_id", insertable = false, updatable = false)
+    private Color color;
 
 }
