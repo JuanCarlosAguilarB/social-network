@@ -87,4 +87,15 @@ public class GlobalExceptionHandler  {
                 .build();
     }
 
+
+    @ExceptionHandler(BoardNotFound.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ResponseBody
+    public ApiExceptionResponse handleBoardNotFound(BoardNotFound ex) {
+        return new ApiExceptionResponse.ApiExceptionResponseBuilder()
+                .status(HttpStatus.NOT_FOUND.value())
+                .error(HttpStatus.NOT_FOUND.getReasonPhrase())
+                .message(ex.getMessage())
+                .build();
+    }
 }
