@@ -29,7 +29,7 @@ public class CreateBoardController {
     private GetUserByUsername getUserByUsername;
 
     @Operation(summary = "Create a new board", description = "Creates a new board for the authenticated user", tags = { "Board" })
-    @PostMapping("/board/")
+    @PostMapping("/boards/")
     public ResponseEntity createBoard(@RequestBody CreateBoardRequest createBoardRequest, Authentication auth) {
 
         // Extract userId of token

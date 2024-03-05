@@ -21,7 +21,7 @@ public class DeleteBoardController {
     private DeleteBoardService deleteBoardServices;
 
     @Operation(summary = "Delete a board", description = "Deletes a board by its id", tags = { "Board" })
-    @DeleteMapping("/board/{boardId}/")
+    @DeleteMapping("/boards/{boardId}/")
     public ResponseEntity deleteBoard(@PathVariable UUID boardId) {
         deleteBoardServices.deleteBoard(boardId);
         return ResponseEntity.ok().build();

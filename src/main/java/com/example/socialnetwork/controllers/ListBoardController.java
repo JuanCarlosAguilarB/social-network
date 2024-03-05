@@ -22,7 +22,7 @@ public class ListBoardController {
 
     @Autowired
     ListBoardServices listBoardServices;
-    @GetMapping("/board/")
+    @GetMapping("/boards/")
     public ResponseEntity<Page<BoardResponse>> getBoard(Pageable pageable) {
             Page<Board> boardPage = listBoardServices.listBoards(pageable);
 

@@ -28,7 +28,7 @@ public class CreateTopicController {
     private GetUserByUsername getUserByUsername;
 
     @Operation(summary = "Create a new topic", description = "Creates a new topic for the authenticated user", tags = { "Board" })
-    @PostMapping("/board/{boardId}/topic/")
+    @PostMapping("/boards/{boardId}/topics/")
     public void createTopic(@RequestBody CreateTopicRequest createTopicRequest, Authentication auth, @PathVariable UUID boardId) {
 
         String username = auth.getName();
