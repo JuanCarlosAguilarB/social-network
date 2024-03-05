@@ -19,7 +19,7 @@ public class Task {
     private String name;
     private String description;
 
-    @Column(name = "status_id")
+    @Column(name = "status_id", nullable = false)
     private Integer statusId;
 
 //    @Column(name = "board_id")

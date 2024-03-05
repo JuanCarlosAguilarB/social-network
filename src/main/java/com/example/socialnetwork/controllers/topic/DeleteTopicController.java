@@ -1,4 +1,4 @@
-package com.example.socialnetwork.controllers.board;
+package com.example.socialnetwork.controllers.topic;
 
 import com.example.socialnetwork.repositories.board.TopicRepository;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -9,14 +9,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.UUID;
 
-@Tag(name = "Board", description = "Board management operations")
+@Tag(name = "Topic", description = "Topic management operations")
 @RestController
 public class DeleteTopicController {
 
     @Autowired
     TopicRepository topicRepository;
 
-    @DeleteMapping("/boards/topics/{id}/")
+    @DeleteMapping("/topics/{id}/")
     public void deleteTopic(@PathVariable UUID id) {
         topicRepository.deleteById(id);
     }

@@ -1,4 +1,4 @@
-package com.example.socialnetwork.services.board;
+package com.example.socialnetwork.services.topic;
 
 import com.example.socialnetwork.entities.Topic;
 import com.example.socialnetwork.repositories.board.TopicRepository;
@@ -9,11 +9,10 @@ import org.springframework.stereotype.Service;
 public class CreateTopicService {
 
     @Autowired
-    private TopicRepository topicRepository;
+    TopicRepository topicRepository;
 
     public void createTopic(Topic topic) {
-
         topicRepository.save(topic);
-
     }
+
 }
