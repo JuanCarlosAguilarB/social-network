@@ -5,6 +5,8 @@ import com.example.socialnetwork.exceptions.InvalidRequestArgumentException;
 import com.example.socialnetwork.repositories.UserRepository;
 import com.example.socialnetwork.services.CreateUserServices;
 import com.example.socialnetwork.utils.EmailValidator;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 import org.springframework.web.bind.annotation.RequestBody;
 
+@Tag(name = "User", description = "User management operations")
 @RestController
 public class CreateUserController {
 
@@ -24,7 +27,9 @@ public class CreateUserController {
 
     @Autowired
     private CreateUserServices createUserServices;
-    @PostMapping(value = "/user/")
+
+    @Operation(summary = "Create a new user", description = "Creates a new user", tags = { "User" })
+    @PostMapping(value = "/users/")
     public ResponseEntity createUser(@RequestBody RequestUserBody requestBody) {
         User user = User.Builder.anUser()
                 .withUsername(requestBody.getUsername())
@@ -43,7 +48,8 @@ public class CreateUserController {
     @Autowired
     UserRepository userRepository;
 
-    @GetMapping(value = "/auth/user")
+    @Operation(summary = "Get a user", description = "Get a user by its id..... not implement", tags = { "User" })
+    @GetMapping(value = "/users/me/")
     public User getUser() {
 
         User user = userRepository.findByUsername("1");

@@ -39,7 +39,7 @@ public class SecurityConfig {
                         authRequest
                                 .requestMatchers("/auth/**").permitAll()
                                 .requestMatchers("/api-docs/**").permitAll()
-                                .requestMatchers(HttpMethod.POST, "/user", "/user/").permitAll() // only permit POST requests, create user
+                                .requestMatchers(HttpMethod.POST, "/users", "/users/").permitAll() // only permit POST requests, create user
                                 .anyRequest().authenticated()
                 )
                 .sessionManagement(sessionManager->
