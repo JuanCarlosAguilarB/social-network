@@ -30,6 +30,15 @@ public class GlobalExceptionHandler  {
 //        return new ErrorResponse(true, ex.getMessage());
 //    }
 //
+
+    @ExceptionHandler(Throwable.class)
+    public void handleThrowable(Throwable throwable) {
+        // Obtener el nombre de la clase donde se originó la excepción
+        String className = throwable.getStackTrace()[0].getClassName();
+        // Loguear o imprimir el nombre de la clase y el mensaje de error
+        System.err.println("Error en la clase: " + className);
+        System.err.println("Mensaje de error: " + throwable.getMessage());
+    }
     @ExceptionHandler(DuplicateEmailException.class)
     @ResponseStatus(HttpStatus.CONFLICT)
     @ResponseBody

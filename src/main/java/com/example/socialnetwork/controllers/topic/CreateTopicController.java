@@ -33,15 +33,11 @@ public class CreateTopicController {
     @PostMapping("/topics/")
     public ResponseEntity createTopic(@RequestBody CreateTopicRequest createTopicRequest, Authentication authentication){
 
-        String username = authentication.getName();
-        UUID userId = getUserByUsername.getUserByUsername(username).getId();
-
         Topic topic = new Topic().builder()
                 .name(createTopicRequest.getName())
                 .description(createTopicRequest.getDescription())
                 .boardId(createTopicRequest.getBoardId())
                 .colorId(createTopicRequest.getColorId())
-                .userId(userId)
                 .build();
 
         createTopicServices.createTopic(topic);

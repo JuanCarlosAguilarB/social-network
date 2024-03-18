@@ -3,6 +3,7 @@ package com.example.socialnetwork.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -23,15 +24,9 @@ public class Topic {
     @Column(name = "color_id")
     private Integer colorId;
 
-    @Column(name = "user_id")
-    private UUID userId;
 
     @Column(name = "board_id")
     private UUID boardId;
-
-    @ManyToOne
-    @JoinColumn(name = "user_id", insertable = false, updatable = false)
-    private User user;
 
     @ManyToOne
     @JoinColumn(name = "board_id", insertable = false, updatable = false)
@@ -40,5 +35,8 @@ public class Topic {
     @ManyToOne
     @JoinColumn(name = "color_id", insertable = false, updatable = false)
     private Color color;
+
+    @OneToMany(mappedBy = "topicId", cascade = CascadeType.ALL)
+    private List<Task> tasks;
 
 }

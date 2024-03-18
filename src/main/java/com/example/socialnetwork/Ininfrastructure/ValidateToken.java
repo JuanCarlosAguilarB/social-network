@@ -17,8 +17,7 @@ public class ValidateToken implements IValidateToken {
 
             LocalDate now = LocalDate.now();
 
-            if
-            (
+            if(
                     decodedJWT.getExpiresAt().before(java.sql.Date.valueOf(now)) &&
                     !decodedJWT.getSubject().equals(userDetails.getUsername())
             )

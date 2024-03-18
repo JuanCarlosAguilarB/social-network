@@ -1,5 +1,6 @@
 package com.example.socialnetwork.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -32,7 +33,8 @@ public class Board {
     @JoinColumn(name = "user_id", insertable = false, updatable = false)
     private User user;
 
-    @OneToMany(mappedBy = "board", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("board") // to avoid infinite recursion by circular imports
+    @OneToMany(mappedBy = "board", cascade = CascadeType.ALL)
     private List<Topic> topics;
 
     // relations

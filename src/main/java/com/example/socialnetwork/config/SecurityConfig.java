@@ -38,6 +38,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authRequest ->
                         authRequest
                                 .requestMatchers("/auth/**").permitAll()
+                                .requestMatchers("/**").permitAll()
                                 .requestMatchers("/api-docs/**").permitAll()
                                 .requestMatchers(HttpMethod.POST, "/users", "/users/").permitAll() // only permit POST requests, create user
                                 .anyRequest().authenticated()
